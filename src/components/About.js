@@ -33,7 +33,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 py-20">
+      <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 py-20 hero-section">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
           <h1 className="text-5xl font-bold mb-6">
             About
@@ -51,7 +51,7 @@ const About = () => {
       <div className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="card-ui">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">
                 Our Mission
               </h2>
@@ -63,18 +63,18 @@ const About = () => {
               </p>
               <Link
                 to="/contact"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-semibold animated-gradient-btn main-cta hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105"
               >
                 Get in Touch
               </Link>
             </div>
-            <div className="relative">
+            <div className="relative card-ui">
               <img 
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
                 alt="Team collaboration"
                 className="rounded-2xl shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl hero-overlay"></div>
             </div>
           </div>
         </div>
@@ -177,15 +177,15 @@ const About = () => {
       <div className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
+            <div className="relative card-ui">
               <img 
                 src="https://images.unsplash.com/photo-1488646953014-85cb44e25828"
                 alt="Travel story"
                 className="rounded-2xl shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl hero-overlay"></div>
             </div>
-            <div>
+            <div className="card-ui">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">
                 Our Story
               </h2>
@@ -215,13 +215,13 @@ const About = () => {
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <Link
               to="/"
-              className="px-8 py-4 bg-white text-orange-500 rounded-xl font-bold hover:bg-orange-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="px-8 py-4 bg-white text-orange-500 rounded-xl font-bold animated-gradient-btn main-cta hover:bg-orange-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               Explore Destinations
             </Link>
             <Link
               to="/agentlogin"
-              className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-bold hover:bg-white hover:text-orange-500 transition-all duration-300 transform hover:scale-105"
+              className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-bold animated-gradient-btn hover:bg-white hover:text-orange-500 transition-all duration-300 transform hover:scale-105"
             >
               Become an Agent
             </Link>

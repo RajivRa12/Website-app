@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { API } from '../config/api';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -25,7 +23,6 @@ const ItineraryDetail = () => {
     agree: false,
   });
   const [dateRange, setDateRange] = useState([null, null]);
-  const [startDate, endDate] = dateRange;
   const [bookingSubmitted, setBookingSubmitted] = useState(false);
   const navigate = useNavigate();
   const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(false);
@@ -257,20 +254,20 @@ const ItineraryDetail = () => {
         )}
       </div>
       {/* Hero Section */}
-      <div className="relative h-96 overflow-hidden">
+      <div className="relative h-96 overflow-hidden hero-section">
         <img 
           src={itinerary.images?.[0] ? `data:image/jpeg;base64,${itinerary.images[0]}` : "https://images.unsplash.com/photo-1550399504-8953e1a6ac87"}
           alt={itinerary.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent hero-overlay"></div>
         <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl font-bold mb-4">{itinerary.title}</h1>
             <div className="flex items-center space-x-6 text-lg">
-              <span>📍 {itinerary.location.destination}</span>
-              <span>⏱️ {itinerary.duration}</span>
-              <span>👥 {itinerary.max_travelers || '12'} travelers</span>
+              <span className="icon-ui">📍 {itinerary.location.destination}</span>
+              <span className="icon-ui">⏱️ {itinerary.duration}</span>
+              <span className="icon-ui">👥 {itinerary.max_travelers || '12'} travelers</span>
             </div>
           </div>
         </div>
@@ -401,7 +398,7 @@ const ItineraryDetail = () => {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Booking Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24 card-ui">
               <div className="text-center mb-6">
                 <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
                   {itinerary.currency} {itinerary.price}
@@ -425,7 +422,7 @@ const ItineraryDetail = () => {
               </div>
 
               <button
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 mb-4"
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg font-semibold animated-gradient-btn hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 mb-4"
                 onClick={() => setShowBookingModal(true)}
               >
                 Book Now

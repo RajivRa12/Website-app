@@ -10,8 +10,6 @@ const Home = () => {
   const [searchLocation, setSearchLocation] = useState('');
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
-  const [searchSuggestions, setSearchSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
   const [aiRecommendations, setAiRecommendations] = useState([]);
   const [showAllPackages, setShowAllPackages] = useState(false);
   const [filters, setFilters] = useState({
@@ -98,8 +96,6 @@ const Home = () => {
       generateAISuggestions();
     } else {
       setFilteredItineraries(itineraries);
-      setSearchSuggestions([]);
-      setShowSuggestions(false);
     }
   }, [searchLocation, itineraries]);
 
@@ -122,8 +118,8 @@ const Home = () => {
       dest.toLowerCase().includes(searchLocation.toLowerCase())
     ).slice(0, 5);
     
-    setSearchSuggestions(suggestions);
-    setShowSuggestions(suggestions.length > 0);
+    // setSearchSuggestions(suggestions); // This line was removed
+    // setShowSuggestions(suggestions.length > 0); // This line was removed
   };
 
   // AI-powered recommendations
@@ -230,11 +226,6 @@ const Home = () => {
     }
   };
 
-  const clearSearch = () => {
-    setSearchLocation('');
-    fetchData(); // Reset to show all itineraries
-  };
-
   const resetFilters = () => {
     setFilters({
       minPrice: '',
@@ -259,9 +250,9 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Hero Section */}
-      <div className="relative h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative h-screen flex items-center justify-center overflow-hidden hero-section">
         {/* Background with parallax effect */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 hero-overlay">
           <img 
             src="https://images.unsplash.com/photo-1544551763-46a013bb70d5" 
             alt="Tropical Beach"
@@ -269,14 +260,12 @@ const Home = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-purple-900/70 to-indigo-900/80"></div>
         </div>
-        
         {/* Floating elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-float"></div>
           <div className="absolute top-40 right-20 w-32 h-32 bg-yellow-400/20 rounded-full animate-float-delayed"></div>
           <div className="absolute bottom-32 left-1/4 w-16 h-16 bg-pink-400/15 rounded-full animate-float"></div>
         </div>
-
         <div className="relative text-center text-white z-10 max-w-6xl mx-auto px-4">
           <h1 className="text-7xl font-bold mb-6 leading-tight animate-fade-in-up">
             Discover Your
@@ -287,65 +276,20 @@ const Home = () => {
           <p className="text-2xl mb-12 font-light opacity-90 animate-fade-in-up animation-delay-300">
             Connect with expert travel agents worldwide and create unforgettable memories
           </p>
-          
           {/* Enhanced Search */}
-          <div className="max-w-2xl mx-auto animate-fade-in-up animation-delay-600">
+          <div className="max-w-2xl mx-auto animate-fade-in-up animation-delay-600 search-box card-ui">
             <form onSubmit={handleSearch} className="relative">
               <div className="flex flex-col md:flex-row gap-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-2xl">
-                <div className="flex-1 relative">
-                  <input
-                    type="text"
-                    placeholder="Where do you want to explore?"
-                    className="w-full px-6 py-4 text-gray-800 bg-transparent border-0 focus:outline-none text-lg placeholder-gray-500 pr-12"
-                    value={searchLocation}
-                    onChange={(e) => setSearchLocation(e.target.value)}
-                    onFocus={() => setShowSuggestions(searchSuggestions.length > 0)}
-                    onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                  />
-                  {searchLocation && (
-                    <button
-                      type="button"
-                      onClick={clearSearch}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xl"
-                    >
-                      ✕
-                    </button>
-                  )}
-                  
-                  {/* AI-powered search suggestions */}
-                  {showSuggestions && searchSuggestions.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-h-60 overflow-y-auto">
-                      {searchSuggestions.map((suggestion, index) => (
-                        <button
-                          key={index}
-                          type="button"
-                          className="w-full px-6 py-3 text-left hover:bg-blue-50 transition-colors flex items-center gap-3"
-                          onClick={() => {
-                            setSearchLocation(suggestion);
-                            setShowSuggestions(false);
-                          }}
-                        >
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span className="text-gray-700">{suggestion}</span>
-                          <span className="ml-auto text-xs text-gray-400">AI Suggestion</span>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowFilters(!showFilters)}
-                  className="px-6 py-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all duration-300 flex items-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
-                  </svg>
-                  Filters
-                </button>
+                <input
+                  type="text"
+                  placeholder="Where do you want to explore?"
+                  className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
+                  value={searchLocation}
+                  onChange={(e) => setSearchLocation(e.target.value)}
+                />
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl animated-gradient-btn main-cta hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   Search
                 </button>
@@ -770,13 +714,13 @@ const Home = () => {
                 Connecting travelers with expert agents worldwide for unforgettable experiences.
               </p>
               <div className="flex space-x-4">
-                <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer">
+                <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer icon-ui">
                   📘
                 </div>
-                <div className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors cursor-pointer">
+                <div className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors cursor-pointer icon-ui">
                   📷
                 </div>
-                <div className="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors cursor-pointer">
+                <div className="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors cursor-pointer icon-ui">
                   🐦
                 </div>
               </div>

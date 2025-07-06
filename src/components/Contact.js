@@ -31,7 +31,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 py-20">
+      <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 py-20 hero-section">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
           <h1 className="text-5xl font-bold mb-6">
             Get in
@@ -48,7 +48,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 card-ui">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">Send us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
@@ -115,7 +115,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-4 rounded-lg font-semibold animated-gradient-btn main-cta hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <div className="flex items-center justify-center">
@@ -140,7 +140,7 @@ const Contact = () => {
 
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1 icon-ui">
                   <span className="text-blue-600 text-xl">📍</span>
                 </div>
                 <div>
@@ -154,7 +154,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1 icon-ui">
                   <span className="text-green-600 text-xl">📧</span>
                 </div>
                 <div>
@@ -171,7 +171,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4 mt-1 icon-ui">
                   <span className="text-purple-600 text-xl">📞</span>
                 </div>
                 <div>
@@ -186,7 +186,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4 mt-1 icon-ui">
                   <span className="text-orange-600 text-xl">💬</span>
                 </div>
                 <div>
@@ -203,18 +203,18 @@ const Contact = () => {
             <div className="pt-8 border-t border-gray-200">
               <h3 className="font-semibold text-gray-800 mb-4">Follow Us</h3>
               <div className="flex space-x-4">
-                <a href="#" className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-                  📘
-                </a>
-                <a href="#" className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white hover:bg-pink-600 transition-colors">
+                <button type="button" className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors icon-ui">
+                  ��
+                </button>
+                <button type="button" className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white hover:bg-pink-600 transition-colors icon-ui">
                   📷
-                </a>
-                <a href="#" className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors">
-                  🐦
-                </a>
-                <a href="#" className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors">
-                  📺
-                </a>
+                </button>
+                <button type="button" className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors icon-ui">
+                  ��
+                </button>
+                <button type="button" className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors icon-ui">
+                  ��
+                </button>
               </div>
             </div>
           </div>
@@ -232,28 +232,28 @@ const Contact = () => {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl p-6 shadow-lg">
+            <div className="bg-white rounded-xl p-6 shadow-lg card-ui">
               <h3 className="font-semibold text-gray-800 mb-3">How do I book a trip?</h3>
               <p className="text-gray-600">
                 Browse our available packages, select your preferred itinerary, and contact the travel agent directly through our platform.
               </p>
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-lg">
+            <div className="bg-white rounded-xl p-6 shadow-lg card-ui">
               <h3 className="font-semibold text-gray-800 mb-3">How do I become a travel agent?</h3>
               <p className="text-gray-600">
                 Click "Join as Agent" in the navigation, fill out the registration form, and our team will review your application.
               </p>
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-lg">
+            <div className="bg-white rounded-xl p-6 shadow-lg card-ui">
               <h3 className="font-semibold text-gray-800 mb-3">Is my payment secure?</h3>
               <p className="text-gray-600">
                 Yes, we use industry-standard encryption and secure payment gateways to protect your financial information.
               </p>
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-lg">
+            <div className="bg-white rounded-xl p-6 shadow-lg card-ui">
               <h3 className="font-semibold text-gray-800 mb-3">What if I need to cancel?</h3>
               <p className="text-gray-600">
                 Cancellation policies vary by package. Contact your travel agent directly to discuss cancellation options.
